@@ -1,0 +1,31 @@
+---
+const { title, subtitle } = Astro.props;
+let { icon } = Astro.props;
+
+const iconPadding = Astro.slots.default ? 'p-2' : 'p-3'
+const iconClass = icon ? `w-12 mr-4 border-2 bg-base-100 border-secondary ${iconPadding}` : 'w-4 h-4 bg-secondary mt-1'
+
+if (icon && icon.endsWith('.svg')) {
+	icon = (await import('../../public/logos/' + icon + '?raw')).default
+}
+---
+
+<div class="flex min-h-20 relative">
+	<div class="w-12">
+		<span class={`${iconClass} block rounded-full mx-auto relative`}>
+			{ icon ? <Fragment set:html={icon} /> : ''	 }
+		</span>
+		<span class="line bg-neutral-content bg-opacity-20 block h-full w-[2px] -mt-8 mx-auto"></span>
+	</div>
+	<div class={`min-h-16 bd-grid pl-5 flex-1 ${ icon ? 'self-center' : '' }`}>
+		<h3 class={`font-semibold ${ subtitle ? '' : 'text-2xl' }`}>{ title }</h3>
+		{ subtitle ? <span class="font-light text-sm text-neutral-content">{ subtitle }</span> : '' }
+		{
+			Astro.slots.default ?
+				<p class="my-2 text-justify pb-6">
+					<slot />
+				</p>
+				: ''
+		}
+	</div>
+</div>

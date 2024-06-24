@@ -1,0 +1,73 @@
+---
+import '../styles/resume.css';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TimeLineElement from "../components/TimeLine.astro";
+import Education from '../../public/logos/education.svg?raw';
+import Code from '../../public/logos/code.svg?raw';
+import { getCollection } from 'astro:content';
+
+const experience = await (await getCollection('experience')).sort((a, b) => b.data.from.valueOf() - a.data.from.valueOf())
+---
+
+<BaseLayout title="Resume" sideBarActiveItemID="cv">
+	<div class="mb-5">
+		<div class="text-3xl w-full font-bold">Resume</div>
+	</div>
+
+	<div class="mb-10 mt-16">
+		<div class="time-line-container">
+			<TimeLineElement
+				icon={Education}
+				title="Education"
+			/>
+
+			<TimeLineElement
+				title="Software Engineering Degree"
+				subtitle="2004 - 2007 @ ESERP"
+			/>
+		</div>
+	</div>
+
+	<div class="mb-12">
+		<div class="time-line-container mb-10">
+			<TimeLineElement
+				icon={Code}
+				title="Experience"
+			/>
+
+			{
+				experience.map((exp) => (
+					<TimeLineElement
+						title={exp.data.title}
+						subtitle={`${exp.data.from} - ${exp.data.to} @ ${exp.data.company}`}
+						icon={exp.data.icon}
+					>
+						{ exp.body }
+					</TimeLineElement>
+				))
+			}
+		</div>
+	</div>
+
+	<div class="mb-5">
+		<div class="text-3xl w-full font-bold">Skills</div>
+	</div>
+
+	<ul class="list-disc md:columns-5 columns-2 mx-6">
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+		<li>Skill Name</li>
+	</ul>
+</BaseLayout>

@@ -1,0 +1,20 @@
+<svg viewBox="0 0 336 354" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<linearGradient x1="70.003201%" y1="100%" x2="99.2217684%" y2="32.2453851%" id="linearGradient-1">
+<stop stop-color="currentColor" offset="0%"></stop>
+<stop stop-color="currentColor" offset="100%"></stop>
+</linearGradient>
+<linearGradient x1="100%" y1="11.5586569%" x2="51.3242865%" y2="90.021527%" id="linearGradient-2">
+<stop stop-color="currentColor" offset="0%"></stop>
+<stop stop-color="currentColor" offset="100%"></stop>
+</linearGradient>
+</defs>
+<g id="Logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+<g id="Imagotipo" transform="translate(-82.000000, -73.000000)">
+<g id="Group-3" transform="translate(82.000000, 73.000000)">
+<path d="M153.734972,125.606577 L189.705246,258.990253 C193.495685,273.014055 185.100754,287.428783 170.954641,291.186449 L55.6925309,321.803804 C41.5464185,325.561471 33.1514868,339.976198 36.9419262,354 L0.910138554,220.69022 C-2.88030084,206.666419 5.51463082,192.251691 19.6607432,188.494024 L134.922854,157.876669 C149.068966,154.119003 157.525412,139.630378 153.734972,125.606577 Z" id="Combined-Shape" fill="url(#linearGradient-1)"></path>
+<path d="M298.206003,0 L334.23779,133.230999 C338.02823,147.246513 329.633298,161.652722 315.487186,165.408168 L200.225075,196.007429 C186.078963,199.762875 177.583279,214.248413 181.373719,228.263927 L145.442683,94.9535995 C141.652244,80.9380854 150.047175,66.5318762 164.193288,62.7764305 L279.455398,32.177169 C293.601511,28.4217233 301.996442,14.015514 298.206003,0 Z" id="Combined-Shape" fill="url(#linearGradient-2)"></path>
+</g>
+</g>
+</g>
+</svg>

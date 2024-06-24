@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HorizontalCard from '../components/HorizontalCard.astro';
+import Skill from '../components/Skill.astro';
+import { getCollection } from 'astro:content';
+import Aircall from '../../public/logos/aircall.svg?raw';
+import FloraQueen from '../../public/logos/floraqueen.svg?raw';
+import Marfeel from '../../public/logos/marfeel.svg?raw';
+import PortAventura from '../../public/logos/portaventura.svg?raw';
+import Softonic from '../../public/logos/softonic.svg?raw';
+import SoloStocks from '../../public/logos/solostocks.svg?raw';
+import TheKnot from '../../public/logos/theknot.svg?raw';
+
+const getEntries = async (collection) => {
+	return (await getCollection(collection)).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+}
+
+const posts = await getEntries('blog');
+const projects = await getEntries('projects');
+
+const experience = (await getCollection('experience')).sort((a, b) => b.data.from.valueOf() - a.data.from.valueOf())[0];
+experience.icon = (await import('../../public/logos/' + experience.data.icon + '?raw')).default;
+
+const skills = ['AWS', 'Cloudflare', 'Docker', 'GitHub', 'Kubernetes', 'Mongo', 'NodeJS', 'OpenAI', 'Postgres', 'React', 'Sentry', 'Svelte']
+---
+
+<BaseLayout sideBarActiveItemID="home">
+	<div class="pb-6 lg:mt-5">
+		<div class="text-xl pb-1 text-neutral-content">Hey there 👋</div>
+		<div class="text-4xl font-bold">I'm Rubén González</div>
+		<div class="text-xl py-3 font-light">From Barcelona, exploring tech one code line at a time.</div>
+		<div class="py-2 text-lg text-neutral-content">
+			I'm a passionate software engineer and tech enthusiast who thrives on innovation.
+			When I'm not diving the code at work or learning new technologies at home, I'm pushing my limits in CrossFit.
+			My unique blend of technical expertise and physical effort culture helps me to create the best possible product.
+		</div>
+	</div>
+
+	<div class="text-3xl w-full font-bold mb-6 mt-10">Currently at</div>
+
+	<div class="flex items-center">
+		<div class="w-20">
+			<Fragment set:html={ experience.icon } />
+		</div>
+		<div class="flex-1 ml-6">
+			<div class="text-xl py-1 font-semibold">{ experience.data.title }</div>
+			<div class="text-neutral-content">Since {experience.data.from} @ { experience.data.company }</div>
+		</div>
+	</div>
+	<div class="mt-6">{ experience.body }</div>
+
+	<div class="text-3xl w-full font-bold mb-10 mt-16">A bit of knowledge</div>
+	<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+		{ skills.map((skill) => <Skill skill={skill} />) }
+	</div>
+
+	{
+		projects.length
+			? <>
+				<div>
+					<div class="text-3xl w-full font-bold mb-5 mt-20">My last projects</div>
+				</div>
+				{
+					projects.slice(0, 3).map((project) => (
+					<>
+						<HorizontalCard
+							title={project.data.title}
+							img={project.data.heroImage}
+							desc={project.data.description}
+							url={"/projects/" + project.slug}
+							target="_self"
+							badge={project.data.badge}
+						/>
+						<div class="divider my-0" />
+					</>
+					))
+				}
+			</>
+			: ''
+	}
+
+	<div class="mb-12 mt-20">
+		<div class="text-3xl w-full font-bold mb-5 mt-10">Trusted by</div>
+
+		<div class="w-full inline-flex flex-nowrap text-neutral-content overflow-hidden">
+			<ul class="flex items-center justify-center md:justify-start animate-infinite-scroll">
+				<li class="w-64 px-12">
+					<Fragment set:html={Marfeel} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={TheKnot} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={FloraQueen} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={Aircall} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={SoloStocks} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={Softonic} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={PortAventura} />
+				</li>
+			</ul>
+			<ul class="flex items-center justify-center md:justify-start animate-infinite-scroll" aria-hidden="true">
+				<li class="w-64 px-12">
+					<Fragment set:html={Marfeel} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={TheKnot} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={FloraQueen} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={Aircall} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={SoloStocks} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={Softonic} />
+				</li>
+				<li class="w-64 px-12">
+					<Fragment set:html={PortAventura} />
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	{
+		posts.length
+			? <>
+				<div>
+					<div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+				</div>
+				{
+					posts.slice(0, 3).map((post) => (
+					<>
+						<HorizontalCard
+							title={post.data.title}
+							img={post.data.heroImage}
+							desc={post.data.description}
+							url={"/blog/" + post.slug }
+							target="_self"
+							badge={post.data.badge}
+						/>
+						<div class="divider my-0" />
+					</>
+					))
+				}
+			</>
+			: ''
+	}
+</BaseLayout>

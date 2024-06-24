@@ -1,0 +1,44 @@
+---
+import LinkedIn from '../../public/logos/linkedin.svg?raw';
+import Rss from '../../public/logos/rss.svg?raw';
+import Mail from '../../public/logos/mail.svg?raw';
+
+const links = [
+    {
+        name: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/rubengonzalez/',
+        icon: LinkedIn,
+    },
+    {
+        name: 'RSS Feed',
+        href: '/rss.xml',
+        icon: Rss,
+    },
+    {
+        name: 'Email',
+        href: 'mailto:hello@ruben.js',
+        icon: Mail,
+    },
+]
+---
+
+<div class="block sticky pointer-events-none bottom-10 bg-base-200 justify-center h-12 [mask-image:linear-gradient(transparent,#000000)]">
+</div>
+
+<div class="px-4 pb-5 pt-1 flex self-center justify-center sticky bottom-0 bg-base-200">
+    {
+		links.map((link) => {
+			return (
+				<a
+					href={link.href}
+					target="_blank"
+					class="mx-3 w-6 hover:text-secondary transition-colors"
+					aria-label={link.name}
+					title={link.name}
+				>
+					<Fragment set:html={link.icon} />
+				</a>
+			);
+		})
+	}
+</div>
