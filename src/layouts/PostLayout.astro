@@ -1,11 +1,8 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
 
 const { title, description, pubDate, updatedDate, heroImage, badge, tags = [] } = Astro.props;
-dayjs.extend(localizedFormat);
-const displayDate = dayjs(pubDate).format("ll")
+const displayDate = pubDate
 import { Image } from "astro:assets";
 ---
 
