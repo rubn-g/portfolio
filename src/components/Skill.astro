@@ -1,11 +1,13 @@
 ---
 const { skill } = Astro.props;
-const icon = (await import('../../public/skills/' + skill.toLowerCase() + '.svg?raw')).default;
+const files = import.meta.glob('/public/skills/*.svg', { as: 'raw' })
+
+const icon = await files['/public/skills/' + skill.toLowerCase() + '.svg']();
 ---
 
 <div class="flex items-center space-x-4 bg-white bg-opacity-10 p-4 rounded-lg">
 	<div class="w-12 rounded overflow-hidden">
-		<Fragment set:html={ icon } />
+		<Fragment set:html={icon} />
 	</div>
 	<div class="flex-1 text-lg">
 		{ skill }

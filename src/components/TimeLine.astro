@@ -1,19 +1,18 @@
 ---
-const { title, subtitle } = Astro.props;
-let { icon } = Astro.props;
+const { title, subtitle, icon } = Astro.props;
 
 const iconPadding = Astro.slots.default ? 'p-2' : 'p-3'
 const iconClass = icon ? `w-12 mr-4 border-2 bg-base-100 border-secondary ${iconPadding}` : 'w-4 h-4 bg-secondary mt-1'
 
-if (icon && icon.endsWith('.svg')) {
-	icon = (await import('../../public/logos/' + icon + '?raw')).default
-}
+const files = import.meta.glob('/public/logos/*.svg', { as: 'raw' })
+console.log(icon)
+const logo = icon ? await files['/public/logos/' + icon]() : null;
 ---
 
 <div class="flex min-h-20 relative">
 	<div class="w-12">
 		<span class={`${iconClass} block rounded-full mx-auto relative`}>
-			{ icon ? <Fragment set:html={icon} /> : ''	 }
+			{ icon ? <Fragment set:html={logo} /> : '' }
 		</span>
 		<span class="line bg-neutral-content bg-opacity-20 block h-full w-[2px] -mt-8 mx-auto"></span>
 	</div>
@@ -25,7 +24,7 @@ if (icon && icon.endsWith('.svg')) {
 				<p class="my-2 text-justify pb-6">
 					<slot />
 				</p>
-				: ''
+			: ''
 		}
 	</div>
 </div>

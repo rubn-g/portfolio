@@ -2,8 +2,6 @@
 import '../styles/resume.css';
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/TimeLine.astro";
-import Education from '../../public/logos/education.svg?raw';
-import Code from '../../public/logos/code.svg?raw';
 import { getCollection } from 'astro:content';
 
 const experience = await (await getCollection('experience')).sort((a, b) => b.data.from.valueOf() - a.data.from.valueOf())
@@ -17,7 +15,7 @@ const experience = await (await getCollection('experience')).sort((a, b) => b.da
 	<div class="mb-10 mt-16">
 		<div class="time-line-container">
 			<TimeLineElement
-				icon={Education}
+				icon="education.svg"
 				title="Education"
 			/>
 
@@ -31,7 +29,7 @@ const experience = await (await getCollection('experience')).sort((a, b) => b.da
 	<div class="mb-12">
 		<div class="time-line-container mb-10">
 			<TimeLineElement
-				icon={Code}
+				icon="code.svg"
 				title="Experience"
 			/>
 

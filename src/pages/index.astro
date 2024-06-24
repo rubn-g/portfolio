@@ -19,9 +19,10 @@ const posts = await getEntries('blog');
 const projects = await getEntries('projects');
 
 const experience = (await getCollection('experience')).sort((a, b) => b.data.from.valueOf() - a.data.from.valueOf())[0];
-experience.icon = (await import('../../public/logos/' + experience.data.icon + '?raw')).default;
-
+const files = import.meta.glob('/public/logos/*.svg', { as: 'raw' })
 const skills = ['AWS', 'Cloudflare', 'Docker', 'GitHub', 'Kubernetes', 'Mongo', 'NodeJS', 'OpenAI', 'Postgres', 'React', 'Sentry', 'Svelte']
+
+experience.icon = await files['/public/logos/' + experience.data.icon]();
 ---
 
 <BaseLayout sideBarActiveItemID="home">
@@ -40,7 +41,7 @@ const skills = ['AWS', 'Cloudflare', 'Docker', 'GitHub', 'Kubernetes', 'Mongo', 
 
 	<div class="flex items-center">
 		<div class="w-20">
-			<Fragment set:html={ experience.icon } />
+			<Fragment set:html={experience.icon} />
 		</div>
 		<div class="flex-1 ml-6">
 			<div class="text-xl py-1 font-semibold">{ experience.data.title }</div>
