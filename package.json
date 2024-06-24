@@ -7,9 +7,10 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "astro build",
+		"build": "astro build --verbose",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"pages:deploy": "npm run build && npx wrangler pages deploy dist --project-name=rubenjs"
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^2.0.3",
@@ -21,6 +22,7 @@
 		"tailwindcss": "^3.3.5"
 	},
 	"devDependencies": {
-		"@tailwindcss/typography": "^0.5.10"
+		"@tailwindcss/typography": "^0.5.10",
+		"wrangler": "^3.61.0"
 	}
 }
