@@ -2,7 +2,7 @@
 title: "Introducing Pawla: AI-Powered assistant"
 description: "AI-powered chatbot using ChatGPT and company APIs to assist customers with planning, inquiries, and needs across mobile and web platforms."
 pubDate: "June 23 2024"
-heroImage: "/post_img.webp"
+heroImage: "/posts/pawla.jpg"
 tags: ["AI"]
 ---
 
