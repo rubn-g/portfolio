@@ -9,7 +9,8 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"push": "GIT_SSH_COMMAND=\"ssh -i ~/.ssh/github_rsa\" git push"
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^2.0.3",
