@@ -1,0 +1,16 @@
+---
+title: "Predicting waiting times at a theme park"
+description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+pubDate: "Sep 11 2022"
+heroImage: "/post_img.webp"
+---
+
+Hard parts:
+- Multiple queues per ride
+- Different priority per queue
+- Number of vehicles can change at any time
+- Ride can be paused for maintenance reasons
+- Weather can affect ride capacity
+- Same ride in same conditions can vary in capacity due to the expertise of the person operating the ride
+- People unpredictable behavior
+- Teenagers jumping fences to skip the queue
